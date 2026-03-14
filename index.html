@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TryInk — AI Tattoo Preview & Design</title>
+  <meta name="description" content="Generate custom AI tattoo designs and preview them on your body before you ink. Try free.">
+  <meta property="og:title" content="TryInk — AI Tattoo Preview & Design">
+  <meta property="og:description" content="See your next tattoo before the needle touches. AI-powered design + live body preview.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">Try<span>Ink</span></a>
+      <div class="nav-links">
+        <a href="#generate">Design</a>
+        <a href="#preview">Preview</a>
+        <a href="#styles">Styles</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <button class="btn btn-sm" onclick="document.querySelector('#generate').scrollIntoView({behavior:'smooth'})">Try Free</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <h1>See Your Next Tattoo<br><span class="accent">Before the Needle Touches</span></h1>
+      <p class="hero-sub">AI-powered tattoo design generator + live body preview. Try hundreds of styles on your own skin — risk free.</p>
+      <div class="hero-actions">
+        <a href="#generate" class="btn btn-lg">Design My Tattoo</a>
+        <a href="#preview" class="btn btn-outline btn-lg">Upload & Preview</a>
+      </div>
+      <p class="hero-note">No signup required — 3 free designs</p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Describe Your Tattoo</h3>
+          <p>Type what you want or browse curated styles to get started.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>AI Generates Designs</h3>
+          <p>Get 4 unique tattoo designs in seconds, tailored to your description.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Preview on Your Body</h3>
+          <p>Upload a photo and see exactly how the tattoo looks on your skin.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Download & Share</h3>
+          <p>Save your design in HD. Share it with your tattoo artist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Generator -->
+  <section class="section section-dark" id="generate">
+    <div class="container">
+      <h2 class="section-title">Design Your Tattoo</h2>
+      <div class="generator">
+        <div class="gen-form">
+          <label for="prompt">Describe your tattoo</label>
+          <textarea id="prompt" rows="3" placeholder='e.g. "A minimal geometric wolf, fine line style"'></textarea>
+          <label>Style</label>
+          <div class="style-pills" id="stylePills">
+            <button class="pill active" data-style="fine-line">Fine Line</button>
+            <button class="pill" data-style="traditional">Traditional</button>
+            <button class="pill" data-style="japanese">Japanese</button>
+            <button class="pill" data-style="tribal">Tribal</button>
+            <button class="pill" data-style="watercolor">Watercolor</button>
+            <button class="pill" data-style="blackwork">Blackwork</button>
+            <button class="pill" data-style="minimalist">Minimalist</button>
+            <button class="pill" data-style="neo-traditional">Neo-Trad</button>
+            <button class="pill" data-style="dotwork">Dotwork</button>
+            <button class="pill" data-style="realistic">Realistic</button>
+          </div>
+          <label for="placement">Body Placement</label>
+          <select id="placement">
+            <option value="forearm">Forearm</option>
+            <option value="upper-arm">Upper Arm</option>
+            <option value="shoulder">Shoulder</option>
+            <option value="back">Back</option>
+            <option value="chest">Chest</option>
+            <option value="wrist">Wrist</option>
+            <option value="ankle">Ankle</option>
+            <option value="thigh">Thigh</option>
+            <option value="neck">Neck</option>
+            <option value="ribcage">Ribcage</option>
+          </select>
+          <button class="btn btn-lg btn-full" id="generateBtn">Generate Designs</button>
+          <p class="gen-note" id="creditsNote">3 free generations remaining</p>
+        </div>
+        <div class="gen-results" id="results">
+          <div class="results-placeholder">
+            <div class="ph-icon">&#9998;</div>
+            <p>Your AI tattoo designs will appear here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preview -->
+  <section class="section" id="preview">
+    <div class="container">
+      <h2 class="section-title">Preview on Your Body</h2>
+      <p class="section-sub">Upload a photo and place the tattoo exactly where you want it</p>
+      <div class="preview-app">
+        <div class="canvas-wrap">
+          <canvas id="previewCanvas" width="600" height="700"></canvas>
+          <div class="upload-overlay" id="uploadOverlay">
+            <div class="upload-icon">&#128247;</div>
+            <p>Drop your photo here<br><span>or click to upload</span></p>
+            <input type="file" id="photoUpload" accept="image/*" hidden>
+          </div>
+        </div>
+        <div class="preview-controls">
+          <h3>Adjust Tattoo</h3>
+          <div class="ctrl">
+            <label>Size</label>
+            <input type="range" id="ctrlSize" min="20" max="300" value="120">
+          </div>
+          <div class="ctrl">
+            <label>Rotation</label>
+            <input type="range" id="ctrlRotation" min="0" max="360" value="0">
+          </div>
+          <div class="ctrl">
+            <label>Opacity</label>
+            <input type="range" id="ctrlOpacity" min="30" max="100" value="85">
+          </div>
+          <div class="preview-btns">
+            <button class="btn btn-full" id="dlFree" disabled>Download Preview (Free)</button>
+            <button class="btn btn-accent btn-full" id="dlHD" disabled>Download HD — $2</button>
+          </div>
+          <p class="small-note">Free download includes watermark</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Styles Gallery -->
+  <section class="section section-dark" id="styles">
+    <div class="container">
+      <h2 class="section-title">Explore Tattoo Styles</h2>
+      <div class="gallery">
+        <div class="gallery-card" data-style="fine-line"><div class="gallery-img" style="--h:200">Fine Line</div><h4>Fine Line</h4><p>Delicate, thin lines. Elegant and subtle.</p></div>
+        <div class="gallery-card" data-style="traditional"><div class="gallery-img" style="--h:10">Traditional</div><h4>Traditional</h4><p>Bold outlines, vivid colors. Classic Americana.</p></div>
+        <div class="gallery-card" data-style="japanese"><div class="gallery-img" style="--h:340">Japanese</div><h4>Japanese</h4><p>Dragons, koi, waves. Rich cultural imagery.</p></div>
+        <div class="gallery-card" data-style="watercolor"><div class="gallery-img" style="--h:280">Watercolor</div><h4>Watercolor</h4><p>Paint splashes, soft edges. Artistic and free.</p></div>
+        <div class="gallery-card" data-style="blackwork"><div class="gallery-img" style="--h:0;--s:0%">Blackwork</div><h4>Blackwork</h4><p>Heavy black ink, geometric or illustrative.</p></div>
+        <div class="gallery-card" data-style="dotwork"><div class="gallery-img" style="--h:160">Dotwork</div><h4>Dotwork</h4><p>Thousands of dots creating depth and texture.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <h2 class="section-title">Simple Pricing</h2>
+      <p class="section-sub">Start free. Pay only when you love the result.</p>
+      <div class="pricing-cards">
+        <div class="price-card">
+          <h3>Free</h3>
+          <div class="price">$0</div>
+          <ul>
+            <li>3 AI design generations</li>
+            <li>Watermarked preview</li>
+            <li>All styles available</li>
+            <li>Body placement preview</li>
+          </ul>
+          <a href="#generate" class="btn btn-outline btn-full">Get Started</a>
+        </div>
+        <div class="price-card featured">
+          <div class="badge">Most Popular</div>
+          <h3>Design Pack</h3>
+          <div class="price">$5<span>/10 designs</span></div>
+          <ul>
+            <li>10 AI design generations</li>
+            <li>HD downloads (no watermark)</li>
+            <li>All styles available</li>
+            <li>Body placement preview</li>
+            <li>Commercial use license</li>
+          </ul>
+          <button class="btn btn-full" id="buyPack">Buy Design Pack</button>
+        </div>
+        <div class="price-card">
+          <h3>Single Download</h3>
+          <div class="price">$2<span>/design</span></div>
+          <ul>
+            <li>1 HD design download</li>
+            <li>No watermark</li>
+            <li>Body preview included</li>
+            <li>Commercial use license</li>
+          </ul>
+          <button class="btn btn-outline btn-full" id="buySingle">Buy Single</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo">Try<span>Ink</span></a>
+        <p>AI-powered tattoo design and preview.<br>See it before you ink it.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#generate">Design</a>
+        <a href="#preview">Preview</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">FAQ</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 TryInk. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
