@@ -8,6 +8,14 @@
   <meta property="og:title" content="TryInk — AI Tattoo Preview & Design">
   <meta property="og:description" content="See your next tattoo before the needle touches. AI-powered design + live body preview.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TryInk — AI Tattoo Preview & Design">
+  <meta name="twitter:description" content="See your next tattoo before the needle touches. AI-powered design + live body preview.">
+  <meta name="twitter:image" content="/og-preview.png">
+  <meta name="keywords" content="tattoo design, AI tattoo, tattoo preview, tattoo generator, try before you ink, tattoo styles">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://tryink.art">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -24,9 +32,23 @@
         <a href="#styles">Styles</a>
         <a href="#pricing">Pricing</a>
       </div>
-      <button class="btn btn-sm" onclick="document.querySelector('#generate').scrollIntoView({behavior:'smooth'})">Try Free</button>
+      <div class="nav-auth">
+        <button class="btn btn-sm" id="authBtn" onclick="window.TryInkAuth.signIn()">Sign In</button>
+        <div class="user-menu" id="userMenu" style="display:none">
+          <img class="user-avatar" id="userAvatar" src="" alt="">
+          <span class="user-name" id="userName"></span>
+          <button class="btn btn-sm btn-outline" onclick="window.TryInkAuth.logOut()">Sign Out</button>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">&#9776;</button>
+      </div>
     </div>
   </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#generate" onclick="closeMobileNav()">Design</a>
+    <a href="#preview" onclick="closeMobileNav()">Preview</a>
+    <a href="#styles" onclick="closeMobileNav()">Styles</a>
+    <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
@@ -38,7 +60,7 @@
         <a href="#generate" class="btn btn-lg">Design My Tattoo</a>
         <a href="#preview" class="btn btn-outline btn-lg">Upload & Preview</a>
       </div>
-      <p class="hero-note">No signup required — 3 free designs</p>
+      <p class="hero-note">No signup required — 50 free designs</p>
     </div>
   </section>
 
@@ -71,50 +93,110 @@
     </div>
   </section>
 
-  <!-- Generator -->
+  <!-- Get Your Design (3 tabs: AI Generate / Upload Photo / Browse Library) -->
   <section class="section section-dark" id="generate">
     <div class="container">
-      <h2 class="section-title">Design Your Tattoo</h2>
-      <div class="generator">
-        <div class="gen-form">
-          <label for="prompt">Describe your tattoo</label>
-          <textarea id="prompt" rows="3" placeholder='e.g. "A minimal geometric wolf, fine line style"'></textarea>
-          <label>Style</label>
-          <div class="style-pills" id="stylePills">
-            <button class="pill active" data-style="fine-line">Fine Line</button>
-            <button class="pill" data-style="traditional">Traditional</button>
-            <button class="pill" data-style="japanese">Japanese</button>
-            <button class="pill" data-style="tribal">Tribal</button>
-            <button class="pill" data-style="watercolor">Watercolor</button>
-            <button class="pill" data-style="blackwork">Blackwork</button>
-            <button class="pill" data-style="minimalist">Minimalist</button>
-            <button class="pill" data-style="neo-traditional">Neo-Trad</button>
-            <button class="pill" data-style="dotwork">Dotwork</button>
-            <button class="pill" data-style="realistic">Realistic</button>
+      <h2 class="section-title">Get Your Tattoo Design</h2>
+      <p class="section-sub">Choose how you want to get your design</p>
+      <div class="design-tabs">
+        <button class="design-tab active" data-tab="ai">AI Generate</button>
+        <button class="design-tab" data-tab="convert">Upload Photo</button>
+        <button class="design-tab" data-tab="library">Browse Library</button>
+      </div>
+
+      <!-- Tab 1: AI Generate -->
+      <div class="tab-panel active" id="tabAi">
+        <div class="generator">
+          <div class="gen-form">
+            <label for="prompt">Describe your tattoo</label>
+            <textarea id="prompt" rows="3" placeholder='e.g. "A minimal geometric wolf, fine line style"'></textarea>
+            <label>Style</label>
+            <div class="style-pills" id="stylePills">
+              <button class="pill active" data-style="minimalist">Minimalist</button>
+              <button class="pill" data-style="fine-line">Fine Line</button>
+              <button class="pill" data-style="traditional">Traditional</button>
+              <button class="pill" data-style="blackwork">Blackwork</button>
+              <button class="pill" data-style="japanese">Japanese</button>
+              <button class="pill" data-style="watercolor">Watercolor</button>
+              <button class="pill" data-style="dotwork">Dotwork</button>
+              <button class="pill" data-style="realistic">Realistic</button>
+              <button class="pill" data-style="neo-traditional">Neo-Traditional</button>
+              <button class="pill" data-style="tribal">Tribal</button>
+              <button class="pill" data-style="geometric">Geometric</button>
+            </div>
+            <button class="btn btn-lg btn-full" id="generateBtn">Generate Designs</button>
+            <p class="gen-note" id="creditsNote">50 free generations remaining</p>
           </div>
-          <label for="placement">Body Placement</label>
-          <select id="placement">
-            <option value="forearm">Forearm</option>
-            <option value="upper-arm">Upper Arm</option>
-            <option value="shoulder">Shoulder</option>
-            <option value="back">Back</option>
-            <option value="chest">Chest</option>
-            <option value="wrist">Wrist</option>
-            <option value="ankle">Ankle</option>
-            <option value="thigh">Thigh</option>
-            <option value="neck">Neck</option>
-            <option value="ribcage">Ribcage</option>
-          </select>
-          <button class="btn btn-lg btn-full" id="generateBtn">Generate Designs</button>
-          <p class="gen-note" id="creditsNote">3 free generations remaining</p>
-        </div>
-        <div class="gen-results" id="results">
-          <div class="results-placeholder">
-            <div class="ph-icon">&#9998;</div>
-            <p>Your AI tattoo designs will appear here</p>
+          <div class="gen-results" id="results">
+            <div class="results-placeholder">
+              <div class="ph-icon">&#9998;</div>
+              <p>Your AI tattoo designs will appear here</p>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Tab 2: Upload Photo -->
+      <div class="tab-panel" id="tabConvert">
+        <div class="converter-app">
+          <div class="converter-upload">
+            <div class="converter-drop" id="converterDrop">
+              <div class="upload-icon">&#128247;</div>
+              <p>Drop a photo here to convert into a tattoo stencil<br><span>or click to upload</span></p>
+              <input type="file" id="converterFileInput" accept="image/*" hidden>
+            </div>
+            <canvas id="converterPreview" width="512" height="512" style="display:none"></canvas>
+          </div>
+          <div class="converter-controls" id="converterControls" style="display:none">
+            <h3>Adjust Stencil</h3>
+            <div class="ctrl">
+              <label>Detail Level</label>
+              <input type="range" id="ctrlThreshold" min="10" max="120" value="40">
+            </div>
+            <div class="ctrl">
+              <label>Line Thickness</label>
+              <input type="range" id="ctrlThickness" min="1" max="3" value="1">
+            </div>
+            <button class="btn btn-accent btn-full" id="useStencilBtn">Use This Design</button>
+            <p class="small-note">Sends the stencil to the preview below</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Browse Library -->
+      <div class="tab-panel" id="tabLibrary">
+        <div class="library-filters">
+          <div class="filter-group">
+            <span class="filter-label">Style</span>
+            <button class="pill lib-style-filter active" data-style="all">All</button>
+            <button class="pill lib-style-filter" data-style="minimalist">Minimalist</button>
+            <button class="pill lib-style-filter" data-style="fine-line">Fine Line</button>
+            <button class="pill lib-style-filter" data-style="traditional">Traditional</button>
+            <button class="pill lib-style-filter" data-style="blackwork">Blackwork</button>
+            <button class="pill lib-style-filter" data-style="japanese">Japanese</button>
+            <button class="pill lib-style-filter" data-style="watercolor">Watercolor</button>
+            <button class="pill lib-style-filter" data-style="dotwork">Dotwork</button>
+            <button class="pill lib-style-filter" data-style="realistic">Realistic</button>
+            <button class="pill lib-style-filter" data-style="neo-traditional">Neo-Trad</button>
+            <button class="pill lib-style-filter" data-style="tribal">Tribal</button>
+            <button class="pill lib-style-filter" data-style="geometric">Geometric</button>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">Body Part</span>
+            <button class="pill lib-body-filter active" data-body="all">All</button>
+            <button class="pill lib-body-filter" data-body="arm">Arm</button>
+            <button class="pill lib-body-filter" data-body="wrist">Wrist</button>
+            <button class="pill lib-body-filter" data-body="shoulder">Shoulder</button>
+            <button class="pill lib-body-filter" data-body="back">Back</button>
+            <button class="pill lib-body-filter" data-body="chest">Chest</button>
+            <button class="pill lib-body-filter" data-body="ankle">Ankle</button>
+          </div>
+        </div>
+        <div class="library-grid" id="libraryGrid">
+          <p class="library-empty">Loading designs...</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -131,6 +213,7 @@
             <p>Drop your photo here<br><span>or click to upload</span></p>
             <input type="file" id="photoUpload" accept="image/*" hidden>
           </div>
+          <button class="btn btn-sm change-photo-btn" id="changePhotoBtn" style="display:none">Change Photo</button>
         </div>
         <div class="preview-controls">
           <h3>Adjust Tattoo</h3>
@@ -146,12 +229,46 @@
             <label>Opacity</label>
             <input type="range" id="ctrlOpacity" min="30" max="100" value="85">
           </div>
+          <div class="ctrl">
+            <label>Body Surface</label>
+            <select id="ctrlSurface">
+              <option value="flat">Flat (Default)</option>
+              <option value="cylinder-h">Arm / Leg</option>
+              <option value="cylinder-v">Torso / Side</option>
+              <option value="sphere">Shoulder / Knee</option>
+            </select>
+          </div>
+          <div class="ctrl">
+            <label>Curvature</label>
+            <input type="range" id="ctrlCurvature" min="0" max="100" value="0">
+          </div>
+          <button class="btn btn-accent btn-full" id="fusionBtn" disabled>Realistic Blend — Tattoo on Skin</button>
+          <p class="small-note" id="fusionNote">Click to blend tattoo into your skin naturally</p>
           <div class="preview-btns">
             <button class="btn btn-full" id="dlFree" disabled>Download Preview (Free)</button>
             <button class="btn btn-accent btn-full" id="dlHD" disabled>Download HD — $2</button>
           </div>
           <p class="small-note">Free download includes watermark</p>
+          <div class="share-btns">
+            <p class="ctrl-label" style="font-size:.85rem;color:var(--tx2);margin:16px 0 8px">Share</p>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-sm btn-outline" id="shareTwitter" disabled title="Share on X">&#120143;</button>
+              <button class="btn btn-sm btn-outline" id="sharePinterest" disabled title="Pin it">P</button>
+              <button class="btn btn-sm btn-outline" id="shareCopy" disabled title="Copy link">&#128279;</button>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Designs (logged-in users) -->
+  <section class="section section-dark" id="myDesigns" style="display:none">
+    <div class="container">
+      <h2 class="section-title">My Designs</h2>
+      <p class="section-sub">Your generation history — click any design to preview it</p>
+      <div class="my-designs-grid" id="myDesignsGrid">
+        <p class="library-empty">No designs yet. Generate your first tattoo above!</p>
       </div>
     </div>
   </section>
@@ -161,12 +278,17 @@
     <div class="container">
       <h2 class="section-title">Explore Tattoo Styles</h2>
       <div class="gallery">
-        <div class="gallery-card" data-style="fine-line"><div class="gallery-img" style="--h:200">Fine Line</div><h4>Fine Line</h4><p>Delicate, thin lines. Elegant and subtle.</p></div>
-        <div class="gallery-card" data-style="traditional"><div class="gallery-img" style="--h:10">Traditional</div><h4>Traditional</h4><p>Bold outlines, vivid colors. Classic Americana.</p></div>
-        <div class="gallery-card" data-style="japanese"><div class="gallery-img" style="--h:340">Japanese</div><h4>Japanese</h4><p>Dragons, koi, waves. Rich cultural imagery.</p></div>
-        <div class="gallery-card" data-style="watercolor"><div class="gallery-img" style="--h:280">Watercolor</div><h4>Watercolor</h4><p>Paint splashes, soft edges. Artistic and free.</p></div>
-        <div class="gallery-card" data-style="blackwork"><div class="gallery-img" style="--h:0;--s:0%">Blackwork</div><h4>Blackwork</h4><p>Heavy black ink, geometric or illustrative.</p></div>
-        <div class="gallery-card" data-style="dotwork"><div class="gallery-img" style="--h:160">Dotwork</div><h4>Dotwork</h4><p>Thousands of dots creating depth and texture.</p></div>
+        <div class="gallery-card" data-style="minimalist"><div class="gallery-img" style="--h:200">Minimalist</div><h4>Minimalist</h4><p>Single line, simple strokes. Less is more.</p></div>
+        <div class="gallery-card" data-style="fine-line"><div class="gallery-img" style="--h:160">Fine Line</div><h4>Fine Line</h4><p>Clean outlines, elegant and subtle.</p></div>
+        <div class="gallery-card" data-style="traditional"><div class="gallery-img" style="--h:10">Traditional</div><h4>Traditional</h4><p>Bold outlines, flat colors. Classic Americana.</p></div>
+        <div class="gallery-card" data-style="blackwork"><div class="gallery-img" style="--h:0;--s:0%">Blackwork</div><h4>Blackwork</h4><p>Solid black, geometric silhouettes.</p></div>
+        <div class="gallery-card" data-style="japanese"><div class="gallery-img" style="--h:340">Japanese</div><h4>Japanese</h4><p>Bold lines, iconic subjects.</p></div>
+        <div class="gallery-card" data-style="watercolor"><div class="gallery-img" style="--h:190">Watercolor</div><h4>Watercolor</h4><p>Soft color splashes, paint drips, artistic flow.</p></div>
+        <div class="gallery-card" data-style="dotwork"><div class="gallery-img" style="--h:260">Dotwork</div><h4>Dotwork</h4><p>Thousands of dots creating intricate patterns.</p></div>
+        <div class="gallery-card" data-style="realistic"><div class="gallery-img" style="--h:30">Realistic</div><h4>Realistic</h4><p>Photorealistic shading, 3D depth and detail.</p></div>
+        <div class="gallery-card" data-style="neo-traditional"><div class="gallery-img" style="--h:300">Neo-Traditional</div><h4>Neo-Traditional</h4><p>Modern twist on classic, rich colors and detail.</p></div>
+        <div class="gallery-card" data-style="tribal"><div class="gallery-img" style="--h:0;--s:0%">Tribal</div><h4>Tribal</h4><p>Bold black curves, Polynesian-inspired patterns.</p></div>
+        <div class="gallery-card" data-style="geometric"><div class="gallery-img" style="--h:220">Geometric</div><h4>Geometric</h4><p>Sacred geometry, precise symmetrical shapes.</p></div>
       </div>
     </div>
   </section>
@@ -246,6 +368,52 @@
     </div>
   </footer>
 
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AXHG3wtqLxnf6LiSGSNv7Y_TFHoW657AJKuxG_BBy0Tw3CRvR-PUQHMFcAmQp-J7VGVR_3LKN_Nep1ne&currency=USD"></script>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+    import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+    import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAeyPw7tHK4dJczzl-y3L5jhsHvp4X4SLU",
+      authDomain: "testtryink.firebaseapp.com",
+      projectId: "testtryink",
+      storageBucket: "testtryink.firebasestorage.app",
+      messagingSenderId: "1048105026166",
+      appId: "1:1048105026166:web:e53f420fb898be7cb31557",
+      measurementId: "G-6CYKDNRPVL"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    window.firebaseAuth = getAuth(app);
+    window.firebaseDb = getFirestore(app);
+  </script>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TryInk",
+    "description": "AI-powered tattoo design generator and body preview tool. Generate custom tattoo designs and see how they look on your skin before getting inked.",
+    "applicationCategory": "DesignApplication",
+    "offers": [
+      {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free tier with 3 AI generations"},
+      {"@type": "Offer", "price": "5.00", "priceCurrency": "USD", "description": "Design Pack — 10 generations"},
+      {"@type": "Offer", "price": "2.00", "priceCurrency": "USD", "description": "Single HD download"}
+    ]
+  }
+  </script>
+
+  <script src="js/auth.js"></script>
+  <script src="js/photo-converter.js"></script>
+  <script src="js/design-library.js"></script>
+  <script src="js/skin-analysis.js"></script>
+  <script src="js/tattoo-blend.js"></script>
+  <script src="js/mesh-warp.js"></script>
+  <script src="js/body-models.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

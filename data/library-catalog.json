@@ -1,0 +1,402 @@
+[
+  {
+    "id": "001",
+    "title": "small crescent moon",
+    "style": "minimalist",
+    "bodyPart": "wrist",
+    "tags": [
+      "moon",
+      "celestial"
+    ],
+    "image": "/designs/001.png",
+    "colorMode": false
+  },
+  {
+    "id": "002",
+    "title": "tiny heart outline",
+    "style": "minimalist",
+    "bodyPart": "wrist",
+    "tags": [
+      "heart",
+      "love"
+    ],
+    "image": "/designs/002.png",
+    "colorMode": false
+  },
+  {
+    "id": "003",
+    "title": "small paper airplane",
+    "style": "minimalist",
+    "bodyPart": "ankle",
+    "tags": [
+      "travel",
+      "freedom"
+    ],
+    "image": "/designs/003.png",
+    "colorMode": false
+  },
+  {
+    "id": "004",
+    "title": "delicate rose with stem",
+    "style": "fine-line",
+    "bodyPart": "arm",
+    "tags": [
+      "rose",
+      "flower"
+    ],
+    "image": "/designs/004.png",
+    "colorMode": false
+  },
+  {
+    "id": "005",
+    "title": "butterfly with detailed wings",
+    "style": "fine-line",
+    "bodyPart": "shoulder",
+    "tags": [
+      "butterfly",
+      "nature"
+    ],
+    "image": "/designs/005.png",
+    "colorMode": false
+  },
+  {
+    "id": "006",
+    "title": "constellation of stars connected by lines",
+    "style": "fine-line",
+    "bodyPart": "back",
+    "tags": [
+      "stars",
+      "celestial"
+    ],
+    "image": "/designs/006.png",
+    "colorMode": false
+  },
+  {
+    "id": "007",
+    "title": "eagle with spread wings",
+    "style": "traditional",
+    "bodyPart": "chest",
+    "tags": [
+      "eagle",
+      "bird",
+      "freedom"
+    ],
+    "image": "/designs/007.png",
+    "colorMode": false
+  },
+  {
+    "id": "008",
+    "title": "anchor with rope",
+    "style": "traditional",
+    "bodyPart": "arm",
+    "tags": [
+      "anchor",
+      "nautical"
+    ],
+    "image": "/designs/008.png",
+    "colorMode": false
+  },
+  {
+    "id": "009",
+    "title": "classic skull with roses",
+    "style": "traditional",
+    "bodyPart": "arm",
+    "tags": [
+      "skull",
+      "rose"
+    ],
+    "image": "/designs/009.png",
+    "colorMode": false
+  },
+  {
+    "id": "010",
+    "title": "mandala circle pattern",
+    "style": "blackwork",
+    "bodyPart": "back",
+    "tags": [
+      "mandala",
+      "geometric"
+    ],
+    "image": "/designs/010.png",
+    "colorMode": false
+  },
+  {
+    "id": "011",
+    "title": "tree of life silhouette",
+    "style": "blackwork",
+    "bodyPart": "arm",
+    "tags": [
+      "tree",
+      "nature"
+    ],
+    "image": "/designs/011.png",
+    "colorMode": false
+  },
+  {
+    "id": "012",
+    "title": "wolf head silhouette",
+    "style": "blackwork",
+    "bodyPart": "chest",
+    "tags": [
+      "wolf",
+      "animal"
+    ],
+    "image": "/designs/012.png",
+    "colorMode": false
+  },
+  {
+    "id": "013",
+    "title": "koi fish swimming upstream",
+    "style": "japanese",
+    "bodyPart": "arm",
+    "tags": [
+      "koi",
+      "fish"
+    ],
+    "image": "/designs/013.png",
+    "colorMode": false
+  },
+  {
+    "id": "014",
+    "title": "cherry blossom branch",
+    "style": "japanese",
+    "bodyPart": "shoulder",
+    "tags": [
+      "cherry blossom",
+      "flower"
+    ],
+    "image": "/designs/014.png",
+    "colorMode": false
+  },
+  {
+    "id": "015",
+    "title": "dragon coiling",
+    "style": "japanese",
+    "bodyPart": "back",
+    "tags": [
+      "dragon",
+      "mythical"
+    ],
+    "image": "/designs/015.png",
+    "colorMode": false
+  },
+  {
+    "id": "016",
+    "title": "hummingbird in flight",
+    "style": "watercolor",
+    "bodyPart": "shoulder",
+    "tags": [
+      "bird",
+      "nature"
+    ],
+    "image": "/designs/016.png",
+    "colorMode": true
+  },
+  {
+    "id": "017",
+    "title": "watercolor phoenix rising",
+    "style": "watercolor",
+    "bodyPart": "back",
+    "tags": [
+      "phoenix",
+      "mythical"
+    ],
+    "image": "/designs/017.png",
+    "colorMode": true
+  },
+  {
+    "id": "018",
+    "title": "abstract watercolor feather",
+    "style": "watercolor",
+    "bodyPart": "arm",
+    "tags": [
+      "feather",
+      "abstract"
+    ],
+    "image": "/designs/018.png",
+    "colorMode": true
+  },
+  {
+    "id": "019",
+    "title": "geometric elephant",
+    "style": "dotwork",
+    "bodyPart": "arm",
+    "tags": [
+      "elephant",
+      "animal"
+    ],
+    "image": "/designs/019.png",
+    "colorMode": false
+  },
+  {
+    "id": "020",
+    "title": "sacred geometry flower of life",
+    "style": "dotwork",
+    "bodyPart": "back",
+    "tags": [
+      "sacred geometry",
+      "spiritual"
+    ],
+    "image": "/designs/020.png",
+    "colorMode": false
+  },
+  {
+    "id": "021",
+    "title": "dotwork sun and moon",
+    "style": "dotwork",
+    "bodyPart": "chest",
+    "tags": [
+      "sun",
+      "moon",
+      "celestial"
+    ],
+    "image": "/designs/021.png",
+    "colorMode": false
+  },
+  {
+    "id": "022",
+    "title": "realistic lion portrait",
+    "style": "realistic",
+    "bodyPart": "arm",
+    "tags": [
+      "lion",
+      "animal",
+      "portrait"
+    ],
+    "image": "/designs/022.png",
+    "colorMode": true
+  },
+  {
+    "id": "023",
+    "title": "realistic compass with map",
+    "style": "realistic",
+    "bodyPart": "chest",
+    "tags": [
+      "compass",
+      "travel"
+    ],
+    "image": "/designs/023.png",
+    "colorMode": true
+  },
+  {
+    "id": "024",
+    "title": "realistic eye with reflection",
+    "style": "realistic",
+    "bodyPart": "arm",
+    "tags": [
+      "eye",
+      "portrait"
+    ],
+    "image": "/designs/024.png",
+    "colorMode": true
+  },
+  {
+    "id": "025",
+    "title": "fox head with flowers",
+    "style": "neo-traditional",
+    "bodyPart": "arm",
+    "tags": [
+      "fox",
+      "animal",
+      "flower"
+    ],
+    "image": "/designs/025.png",
+    "colorMode": true
+  },
+  {
+    "id": "026",
+    "title": "owl perched on branch",
+    "style": "neo-traditional",
+    "bodyPart": "chest",
+    "tags": [
+      "owl",
+      "bird"
+    ],
+    "image": "/designs/026.png",
+    "colorMode": true
+  },
+  {
+    "id": "027",
+    "title": "snake wrapped around dagger",
+    "style": "neo-traditional",
+    "bodyPart": "arm",
+    "tags": [
+      "snake",
+      "dagger"
+    ],
+    "image": "/designs/027.png",
+    "colorMode": true
+  },
+  {
+    "id": "028",
+    "title": "tribal armband pattern",
+    "style": "tribal",
+    "bodyPart": "arm",
+    "tags": [
+      "band",
+      "pattern"
+    ],
+    "image": "/designs/028.png",
+    "colorMode": false
+  },
+  {
+    "id": "029",
+    "title": "tribal turtle",
+    "style": "tribal",
+    "bodyPart": "shoulder",
+    "tags": [
+      "turtle",
+      "animal"
+    ],
+    "image": "/designs/029.png",
+    "colorMode": false
+  },
+  {
+    "id": "030",
+    "title": "tribal sun design",
+    "style": "tribal",
+    "bodyPart": "back",
+    "tags": [
+      "sun",
+      "celestial"
+    ],
+    "image": "/designs/030.png",
+    "colorMode": false
+  },
+  {
+    "id": "031",
+    "title": "geometric wolf head",
+    "style": "geometric",
+    "bodyPart": "arm",
+    "tags": [
+      "wolf",
+      "animal"
+    ],
+    "image": "/designs/031.png",
+    "colorMode": false
+  },
+  {
+    "id": "032",
+    "title": "geometric mountain landscape",
+    "style": "geometric",
+    "bodyPart": "arm",
+    "tags": [
+      "mountain",
+      "nature"
+    ],
+    "image": "/designs/032.png",
+    "colorMode": false
+  },
+  {
+    "id": "033",
+    "title": "geometric arrow compass",
+    "style": "geometric",
+    "bodyPart": "wrist",
+    "tags": [
+      "arrow",
+      "compass"
+    ],
+    "image": "/designs/033.png",
+    "colorMode": false
+  }
+]
